@@ -1,0 +1,47 @@
+GET http://localhost:5000/users
+Content-Type: application/json
+
+###
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+  "firstName":"Riktusko",
+  "lastName": "Riktusko",
+  "email": "riktusko@yahoo.com",
+  "password": "ras12"
+}
+###
+POST http://localhost:5000/users/login
+Content-Type: application/json
+
+{
+  "email": "riktusko@yahoo.com",
+  "password": "123456"
+}
+### 
+POST http://localhost:5000/users/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMxZjkwNjk1ZDc4YmVkNGJiZjE4NTciLCJpYXQiOjE3MDcyMTEyMTQsImV4cCI6MTcwNzIxMjExNH0.4TGTmZjjjhhBt2M-7O2HpKZW52SZZ8pJc5oX4dY89Yo
+
+###
+GET http://localhost:5000/users/profile
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMxZjkwNjk1ZDc4YmVkNGJiZjE4NTciLCJpYXQiOjE3MDcyMTEyMTQsImV4cCI6MTcwNzIxMjExNH0.4TGTmZjjjhhBt2M-7O2HpKZW52SZZ8pJc5oX4dY89Yo
+
+###
+POST http://localhost:5000/users/reset-password-request
+Content-Type: application/json
+
+{
+  "email": "riktusko@yahoo.com"
+}
+
+###
+POST http://localhost:5000/users/reset-password/65c1f90695d78bed4bbf1857/79a4a9e87c935cd1eb0609faaf21763997ebbb65e58fbf2582c281fb9c2f0454
+Content-Type: application/json
+
+{
+  "password": "12345644"
+}
+
