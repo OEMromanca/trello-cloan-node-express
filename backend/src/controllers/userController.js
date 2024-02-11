@@ -124,7 +124,7 @@ async function requestPasswordReset(req, res) {
       return res.status(400).send("User with given email doesn't exist");
 
     const token = crypto.randomBytes(32).toString("hex");
-    const link = `${process.env.MONGODB_URI}/password-reset/${user._id}/${token}`;
+    const link = `https://en.wikipedia.org/wiki/Opal/${user._id}/${token}`;
 
     user.resetPasswordToken = token;
     user.resetPasswordExpires = Date.now() + 3600000;

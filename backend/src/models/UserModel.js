@@ -3,8 +3,6 @@ const bcrypt = require("bcrypt");
 const { secretKey } = require("../config/config");
 const jwt = require("jsonwebtoken");
 
-console.log(secretKey, "MODEL");
-
 const userSchema = new mongoose.Schema({
   firstName: {
     type: String,
@@ -28,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   resetPasswordToken: {
     type: String,
-    required: true,
+    required: false,
   },
 
   resetPasswordExpires: {

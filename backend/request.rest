@@ -6,10 +6,10 @@ POST http://localhost:5000/users/register
 Content-Type: application/json
 
 {
-  "firstName":"Riktusko",
-  "lastName": "Riktusko",
-  "email": "riktusko@yahoo.com",
-  "password": "ras12"
+  "firstName":"Rikt",
+  "lastName": "Rikt",
+  "email": "noreplyforthisemail0000@gmail.com",
+  "password": "123456"
 }
 ###
 POST http://localhost:5000/users/login
@@ -34,7 +34,7 @@ POST http://localhost:5000/users/reset-password-request
 Content-Type: application/json
 
 {
-  "email": "riktusko@yahoo.com"
+  "email": "r.jamrisko@gmail.com"
 }
 
 ###
