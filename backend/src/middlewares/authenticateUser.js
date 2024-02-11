@@ -49,4 +49,4 @@ const authorizeUser = (roles) => {
   };
 };
 
-module.exports = { authenticateUser, authorizeUser };
+module.exports = authenticateUser;

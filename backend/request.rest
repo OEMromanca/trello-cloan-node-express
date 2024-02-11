@@ -1,11 +1,23 @@
 GET http://localhost:5000/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2NjU0MjIsImV4cCI6MTcwNzY2NjMyMn0.kQg2diJjlB8tlF5jDz82RwnLkalj247qnRTezPn7LDA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2ODQwMDMsImV4cCI6MTcwNzY4NDkwM30.YlNPdB__YHOPihz13ybSMWHR156ip6Uymr9ay8igRqU
 
 
 ###
 DELETE http://localhost:5000/users/65c8e475f68a59d6276fa5ba
 Content-Type: application/json
+
+###
+PUT http://localhost:5000/users/edit-user/65c8e5526d6a7f9d48787034
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2ODQwMDMsImV4cCI6MTcwNzY4NDkwM30.YlNPdB__YHOPihz13ybSMWHR156ip6Uymr9ay8igRqU
+
+{
+  "firstName": "Romeo",
+  "lastName": "Dzem",
+  "email": "r.jamrisko@gmail.com"
+}
+
 
 ###
 POST  http://localhost:5000/users/assign-role
@@ -32,7 +44,7 @@ POST http://localhost:5000/users/login
 Content-Type: application/json
 
 {
-  "email": "r.jamriško@gmail.com",
+  "email": "r.jamrisko@gmail.com",
   "password": "123456"
 }
 ### 

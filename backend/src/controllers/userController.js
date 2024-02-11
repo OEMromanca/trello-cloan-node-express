@@ -213,6 +213,32 @@ async function assignRoleToUser(req, res) {
   }
 }
 
+async function editUser(req, res) {
+  const userId = req.params.id;
+  const { firstName, lastName, email } = req.body;
+
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    user.firstName = firstName || user.firstName;
+    user.lastName = lastName || user.lastName;
+    user.email = email || user.email;
+
+    await user.save();
+
+    res
+      .status(200)
+      .json({ message: `User '${user.email}' updated successfully` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   getUsers,
   registerUser,
@@ -223,4 +249,5 @@ module.exports = {
   resetPassword,
   assignRoleToUser,
   deleteUser,
+  editUser,
 };

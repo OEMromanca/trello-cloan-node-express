@@ -9,22 +9,32 @@ const {
   resetPassword,
   assignRoleToUser,
   deleteUser,
+  editUser,
 } = require("../controllers/userController");
-const {
-  authenticateUser,
-  authorizeUser,
-} = require("../middlewares/authenticateUser");
+const authenticateUser = require("../middlewares/authenticateUser");
+const authorizeUser = require("../middlewares/authorizeUser");
 
 const userRouter = Router();
 
 userRouter.get("/", authenticateUser, authorizeUser(["admin"]), getUsers);
-userRouter.delete("/:id", deleteUser);
+userRouter.delete("/delete-user/:id", deleteUser);
 userRouter.post("/assign-role", assignRoleToUser);
 userRouter.post("/register", registerUser);
 userRouter.post("/login", loginUser);
 userRouter.post("/logout", authenticateUser, logoutUser);
-userRouter.get("/profile", authenticateUser, userProfile);
+userRouter.get(
+  "/profile",
+  authenticateUser,
+  authorizeUser(["admin", "user"]),
+  userProfile
+);
 userRouter.post("/reset-password-request", requestPasswordReset);
 userRouter.post("/reset-password/:userId/:token", resetPassword);
+userRouter.put(
+  "/edit-user/:id",
+  authenticateUser,
+  authorizeUser(["admin"]),
+  editUser
+);
 
 module.exports = { userRouter };
