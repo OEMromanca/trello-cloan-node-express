@@ -18,9 +18,27 @@ async function getUsers(_, res) {
   }
 }
 
+async function deleteUser(req, res) {
+  const userId = req.params.id;
+
+  try {
+    const user = await UserModel.findByIdAndDelete(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    res
+      .status(200)
+      .json({ message: `User '${user.email}' deleted successfully` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 async function registerUser(req, res) {
   try {
-    console.log(">Register");
     const { firstName, lastName, email, password } = req.body;
 
     const existingUser = await UserModel.findOne({ email });
@@ -170,6 +188,31 @@ async function resetPassword(req, res) {
   }
 }
 
+async function assignRoleToUser(req, res) {
+  const { userId, role } = req.body;
+
+  try {
+    const user = await UserModel.findById(userId);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found" });
+    }
+
+    if (user.roles && user.roles.includes(role)) {
+      return res.status(400).json({ error: "User already has this role" });
+    }
+
+    user.roles = role;
+
+    await user.save();
+
+    res.status(200).json({ message: `Role '${role}' assigned to user` });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+}
+
 module.exports = {
   getUsers,
   registerUser,
@@ -178,4 +221,6 @@ module.exports = {
   userProfile,
   requestPasswordReset,
   resetPassword,
+  assignRoleToUser,
+  deleteUser,
 };

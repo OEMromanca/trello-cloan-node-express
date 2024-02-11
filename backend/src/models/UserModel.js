@@ -28,7 +28,6 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-
   resetPasswordExpires: {
     type: Date,
     required: false,
@@ -36,6 +35,12 @@ const userSchema = new mongoose.Schema({
   resetPasswordLink: {
     type: String,
     required: false,
+  },
+  roles: {
+    type: String,
+    enum: ["user", "admin"],
+    default: "user",
+    required: true,
   },
 
   tokens: [

@@ -1,14 +1,30 @@
 GET http://localhost:5000/users
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2NjU0MjIsImV4cCI6MTcwNzY2NjMyMn0.kQg2diJjlB8tlF5jDz82RwnLkalj247qnRTezPn7LDA
+
+
+###
+DELETE http://localhost:5000/users/65c8e475f68a59d6276fa5ba
+Content-Type: application/json
+
+###
+POST  http://localhost:5000/users/assign-role
+Content-Type: application/json
+
+{
+  "userId": "65c8e5526d6a7f9d48787034",
+  "role": "admin"
+}
+
 
 ###
 POST http://localhost:5000/users/register
 Content-Type: application/json
 
 {
-  "firstName":"Rikt",
-  "lastName": "Rikt",
-  "email": "noreplyforthisemail0000@gmail.com",
+  "firstName":"Roman",
+  "lastName": "Jamriško",
+  "email": "r.jamriško@gmail.com",
   "password": "123456"
 }
 ###
@@ -16,7 +32,7 @@ POST http://localhost:5000/users/login
 Content-Type: application/json
 
 {
-  "email": "riktusko@yahoo.com",
+  "email": "r.jamriško@gmail.com",
   "password": "123456"
 }
 ### 
