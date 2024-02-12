@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("../db");
 const bcrypt = require("bcrypt");
 const { secretKey } = require("../config/config");
 const jwt = require("jsonwebtoken");
@@ -28,20 +28,21 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: false,
   },
-  resetPasswordExpires: {
-    type: Date,
-    required: false,
-  },
-  resetPasswordLink: {
-    type: String,
-    required: false,
-  },
+
   roles: {
     type: String,
     enum: ["user", "admin"],
     default: "user",
     required: true,
   },
+
+  labels: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Label",
+      required: false,
+    },
+  ],
 
   tokens: [
     {
