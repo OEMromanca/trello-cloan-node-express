@@ -1,9 +1,10 @@
 const LabelModel = require("../models/LabelsModel");
 const UserModel = require("../models/UserModel");
+const TodoModel = require("../models/TodosModel");
 
 async function createLabel(req, res) {
   try {
-    const { name, color } = req.body;
+    const { name } = req.body;
     const userId = req.user._id;
 
     const user = await UserModel.findById(userId);
@@ -11,10 +12,8 @@ async function createLabel(req, res) {
       return res.status(404).json({ error: "User not found" });
     }
 
-    const label = new LabelModel({ name, color, createdBy: userId });
+    const label = new LabelModel({ name, createdBy: userId });
     await label.save();
-
-    console.log(label);
 
     user.labels = user.labels || [];
     user.labels.push(label);
@@ -53,6 +52,21 @@ async function deleteLabel(req, res) {
     const user = await UserModel.findById(userId);
     if (!user) {
       return res.status(404).json({ error: "User not found" });
+    }
+
+    const todosToDelete = await TodoModel.find({
+      createdBy: userId,
+      labelId: labelId,
+    });
+
+    if (todosToDelete && todosToDelete.length > 0) {
+      const todoIdsToDelete = todosToDelete.map((todo) => todo._id);
+
+      user.todos = user.todos.filter(
+        (todoId) => !todoIdsToDelete.includes(todoId)
+      );
+
+      await TodoModel.deleteMany({ _id: { $in: todoIdsToDelete } });
     }
 
     if (user.labels && user.labels.length > 0) {

@@ -3,7 +3,7 @@ const { secretKey } = require("../config/config");
 
 function generateAccessToken(user) {
   return jwt.sign({ sub: user._id }, secretKey, {
-    expiresIn: "15m",
+    // expiresIn: "15m", SET UP according to needs,for now temporarily dissabled
   });
 }
 
