@@ -5,6 +5,7 @@ const dotenv = require("dotenv");
 
 const { userRouter } = require("./routes/userRoutes");
 const { labelRouter } = require("./routes/labelRouters");
+const { todoRouter } = require("./routes/todoRoutes");
 require("./db");
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use("/users", userRouter);
 app.use("/labels", labelRouter);
+app.use("/todos", todoRouter);
 
 app.listen(port, () => {
   console.log(`Server is running at http://localhost:${port}`);
