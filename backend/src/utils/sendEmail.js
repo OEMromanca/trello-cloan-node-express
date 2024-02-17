@@ -2,6 +2,7 @@ const nodemailer = require("nodemailer");
 const dotenv = require("dotenv");
 const pug = require("pug");
 const path = require("path");
+const fs = require("fs");
 
 dotenv.config();
 
@@ -17,10 +18,14 @@ const sendEmail = async (email, subject, link) => {
     const transporter = nodemailer.createTransport({
       host: process.env.HOST,
       port: process.env.MAIL_PORT,
-      secure: false,
+      secure: true,
       auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.PASS,
+      },
+      tls: {
+        key: fs.readFileSync(path.join(__dirname, "key.pem")),
+        cert: fs.readFileSync(path.join(__dirname, "cert.pem")),
       },
     });
 
@@ -32,8 +37,6 @@ const sendEmail = async (email, subject, link) => {
       subject: subject,
       html: emailTemplate,
     });
-
-    console.log("Email úspešne odoslaný");
   } catch (error) {
     console.error(error, "Email nebol odoslaný");
   }
