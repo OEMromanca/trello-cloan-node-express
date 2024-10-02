@@ -1,12 +1,15 @@
 // USERS ENPOINTS requires AUTH
+
+GET https://localhost:5000/api/csrf-token
+
 ####
 GET https://localhost:5000/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDgxOTE0NTQsImV4cCI6MTcwODE5MjM1NH0.9FqY-qfd8AcwKcm0SGINfWBrgT4fuvD_vQ4DEmIy7xc
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc4NjksImV4cCI6MTcyNzc4ODc2OX0.IZHRy9yOquu_-vBwC_PbVKF3PPpN3mBpf4_Pj1j2uXU
 ###
 POST https://localhost:5000/users/login
 Content-Type: application/json
+X-CSRF-Token: Wjgdm5tg-XrRmdjgoSDShaaA2uWyaeWzvIUk
 
 {
   "email": "r.jamrisko@gmail.com",
@@ -16,7 +19,7 @@ Content-Type: application/json
 ###
 DELETE https://localhost:5000/users/65c8e5526d6a7f9d48787034
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc5MTk1MzR9.nwR5qp-NwXVhcKU6drpcv_Q1eiv1kVgpbveF2qQ9suE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc1MzgsImV4cCI6MTcyNzc4ODQzOH0.Or2zcCmhIyFCXXVAENEDanCWBsF4Nov23C44a7u5vLE
 
 ###
 PUT https://localhost:5000/users/edit-user/65c8e5526d6a7f9d48787034
@@ -33,11 +36,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1M
 ###
 POST  https://localhost:5000/users/assign-role
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2ODQwMDMsImV4cCI6MTcwNzY4NDkwM30.YlNPdB__YHOPihz13ybSMWHR156ip6Uymr9ay8igRqU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc4MTQsImV4cCI6MTcyNzc4ODcxNH0.uB4xLKeZ4IvAFjx3z4DIXSlR1SojdYG4pEbAq_Vwx2A
 
 
 {
-  "userId": "65c8e5526d6a7f9d48787034",
+  "userId": "66fbf1629da6e7859150bceb",
   "role": "admin"
 }
 
@@ -49,7 +52,7 @@ Content-Type: application/json
 {
   "firstName":"Roman",
   "lastName": "Jamriško",
-  "email": "r.jamriško@gmail.com",
+  "email": "r.jamrisko@gmail.com",
   "password": "123456"
 }
  

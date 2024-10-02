@@ -2,12 +2,12 @@
 ###
 GET https://localhost:5000/labels
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDgwOTkyNTcsImV4cCI6MTcwODEwMDE1N30.Lpvdu0WXOnwXKvD20SVdg2SsZL-oJLKtms-JPSUWOJE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc3MTIsImV4cCI6MTcyNzc4ODYxMn0.LAHQzaHZgJPxk5SMpYYsolRfKT0Or3iLlFnTehGBTgo
 
 ###
 POST https://localhost:5000/labels/create-label
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDgwOTkyNTcsImV4cCI6MTcwODEwMDE1N30.Lpvdu0WXOnwXKvD20SVdg2SsZL-oJLKtms-JPSUWOJE
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc3MTIsImV4cCI6MTcyNzc4ODYxMn0.LAHQzaHZgJPxk5SMpYYsolRfKT0Or3iLlFnTehGBTgo
 
 {
   "name": "label2",

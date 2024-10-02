@@ -1,7 +1,7 @@
-const mongoose = require("../db");
-const bcrypt = require("bcrypt");
-const { secretKey } = require("../config/config");
-const jwt = require("jsonwebtoken");
+const mongoose = require('../db');
+const bcrypt = require('bcrypt');
+const { secretKey } = require('../config/config');
+const jwt = require('jsonwebtoken');
 
 const userSchema = new mongoose.Schema({
   firstName: {
@@ -31,15 +31,15 @@ const userSchema = new mongoose.Schema({
 
   roles: {
     type: String,
-    enum: ["user", "admin"],
-    default: "user",
+    enum: ['user', 'admin'],
+    default: 'user',
     required: true,
   },
 
   labels: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Label",
+      ref: 'Label',
       required: false,
     },
   ],
@@ -47,7 +47,7 @@ const userSchema = new mongoose.Schema({
   todos: [
     {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Todo",
+      ref: 'Todo',
       required: false,
     },
   ],
@@ -57,13 +57,16 @@ const userSchema = new mongoose.Schema({
       token: {
         type: String,
       },
+      refreshToken: {
+        type: String,
+      },
     },
   ],
 });
 
-userSchema.pre("save", async function (next) {
+userSchema.pre('save', async function (next) {
   const user = this;
-  if (user.isModified("password")) {
+  if (user.isModified('password')) {
     const hash = await bcrypt.hash(user.password, 10);
     user.password = hash;
   }
@@ -74,13 +77,13 @@ userSchema.statics.findByCredentials = async function (email, password) {
   try {
     const user = await this.findOne({ email });
     if (!user) {
-      throw new Error("UserNotFound!");
+      throw new Error('UserNotFound!');
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if (!isMatch) {
-      throw new Error("PasswordIsWrong!");
+      throw new Error('PasswordIsWrong!');
     }
 
     return user;
@@ -92,7 +95,7 @@ userSchema.statics.findByCredentials = async function (email, password) {
 userSchema.methods.generateAuthToken = async function () {
   const user = this;
   const token = jwt.sign({ _id: user._id.toString() }, secretKey, {
-    expiresIn: "15m",
+    expiresIn: '15m',
   });
 
   user.tokens = [{ token }];
@@ -101,6 +104,18 @@ userSchema.methods.generateAuthToken = async function () {
   return token;
 };
 
-const UserModel = mongoose.model("User", userSchema);
+userSchema.methods.generateRefreshToken = async function () {
+  const user = this;
+  const refreshToken = jwt.sign({ _id: user._id.toString() }, secretKey, {
+    expiresIn: '30d',
+  });
+
+  user.tokens.push({ refreshToken });
+
+  await user.save();
+  return refreshToken;
+};
+
+const UserModel = mongoose.model('User', userSchema);
 
 module.exports = UserModel;
