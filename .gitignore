@@ -1,0 +1,14 @@
+# Node.js
+node_modules/
+
+# Build artifacts
+dist/
+build/
+*.log
+
+# Environment variables
+.env
+.pem
+
+.DS_Store
+
