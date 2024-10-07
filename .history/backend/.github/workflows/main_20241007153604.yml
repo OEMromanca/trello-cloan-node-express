@@ -34,4 +34,4 @@ jobs:
           push: true
           tags: romanca/trello-clone:latest
           context: ./backend 
-          file: ./backend/Dockerfile
+file: ./backend/Dockerfile
