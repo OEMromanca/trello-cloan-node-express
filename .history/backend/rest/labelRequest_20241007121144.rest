@@ -7,8 +7,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2M
 ###
 POST https://localhost:5000/labels/create-label
 Content-Type: application/json
-Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3MjgyOTU5MzIsImV4cCI6MTcyODI5NjgzMn0.MKiP6YNamy4K2ZQX4_hotVItx5uSs9rhQ6WHKOW91-I
- 
+Authorization:  eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3MjgyOTQyOTMsImV4cCI6MTcyODI5NTE5M30.O1s5d3dDBprRRWN5-g3JjzD3ksFMQQe_jl71YwVxw4k
+X-CSRF-Token: W79ea5w6-4agWNthMnUdSDB_VigtjS84JuL0
 
 
 {

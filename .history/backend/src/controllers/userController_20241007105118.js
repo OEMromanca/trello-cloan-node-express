@@ -157,7 +157,7 @@ async function requestPasswordReset(req, res) {
       return res.status(400).send("User with given email doesn't exist");
 
     const token = crypto.randomBytes(32).toString('hex');
-    //fake link will be updated /// TODO
+    // TODO fake link will be updated /// TODO
     const link = `https://en.wikipedia.org/wiki/Opal/${user._id}/${token}`;
 
     user.resetPasswordToken = token;
