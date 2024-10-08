@@ -51,9 +51,9 @@ POST https://localhost:5000/users/register
 Content-Type: application/json
 
 {
-  "firstName":"Romanko",
-  "lastName": "Jamri",
-  "email": "jamrisko@gmail.com",
+  "firstName":"Roman",
+  "lastName": "Jamriško",
+  "email": "r.jamrisko@gmail.com",
   "password": "123456"
 }
  
