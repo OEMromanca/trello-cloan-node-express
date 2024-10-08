@@ -34,6 +34,6 @@ const server = https.createServer(
   app
 );
 
-server.listen('0.0.0.0:5000',() => {
-  console.log(`Server is running at https://localhost:5000`);
+server.listen(port, '0.0.0.0:5000',() => {
+  console.log(`Server is running at https://localhost:${port}`);
 });
