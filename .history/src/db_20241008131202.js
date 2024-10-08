@@ -7,7 +7,8 @@ const dbConnectionString = process.env.MONGODB_URI;
 
 mongoose.connect(dbConnectionString, {
   tlsAllowInvalidCertificates: false,  // Over TLS
-  tlsAllowInvalidHostnames: false
+  tlsAllowInvalidHostnames: false,
+  useUnifiedTopology: true,
 });
 
 const connection = mongoose.connection;
