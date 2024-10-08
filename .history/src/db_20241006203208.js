@@ -5,11 +5,7 @@ dotenv.config();
 
 const dbConnectionString = process.env.MONGODB_URI;
 
-mongoose.connect(dbConnectionString, {
-  tlsAllowInvalidCertificates: false,  // Over TLS
-  tlsAllowInvalidHostnames: false,  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(dbConnectionString);
 
 const connection = mongoose.connection;
 
