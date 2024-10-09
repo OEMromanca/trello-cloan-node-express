@@ -20,12 +20,12 @@ X-CSRF-Token: mJl6k0Cs-5QLHJBT156UT5ihWlAwwrQAlWOQ
 }
 
 ###
-DELETE https://trello-clone-latest.onrender.com/users/delete-user/65c8e5526d6a7f9d48787034
+DELETE https://trello-clone-latest.onrender.com/users/id
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmZiZjE2MjlkYTZlNzg1OTE1MGJjZWIiLCJpYXQiOjE3Mjc3ODc1MzgsImV4cCI6MTcyNzc4ODQzOH0.Or2zcCmhIyFCXXVAENEDanCWBsF4Nov23C44a7u5vLE
 
 ###
-PUT https://trello-clone-latest.onrender.com/users/edit-user/65c8e5526d6a7f9d48787034
+PUT https://localhost:5000/users/edit-user/65c8e5526d6a7f9d48787034
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWM4ZTU1MjZkNmE3ZjlkNDg3ODcwMzQiLCJpYXQiOjE3MDc2ODQwMDMsImV4cCI6MTcwNzY4NDkwM30.YlNPdB__YHOPihz13ybSMWHR156ip6Uymr9ay8igRqU
 
@@ -49,7 +49,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 
 
 ###
-POST https://trello-clone-latest.onrender.com/users/register
+POST https://localhost:5000/users/register
 Content-Type: application/json
 
 {
@@ -60,17 +60,17 @@ Content-Type: application/json
 }
  
 ### 
-POST https://trello-clone-latest.onrender.com/users/logout
+POST https://localhost:5000/users/logout
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMxZjkwNjk1ZDc4YmVkNGJiZjE4NTciLCJpYXQiOjE3MDcyMTEyMTQsImV4cCI6MTcwNzIxMjExNH0.4TGTmZjjjhhBt2M-7O2HpKZW52SZZ8pJc5oX4dY89Yo
 
 ###
-GET https://trello-clone-latest.onrender.com/users/profile
+GET https://localhost:5000/users/profile
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWMxZjkwNjk1ZDc4YmVkNGJiZjE4NTciLCJpYXQiOjE3MDcyMTEyMTQsImV4cCI6MTcwNzIxMjExNH0.4TGTmZjjjhhBt2M-7O2HpKZW52SZZ8pJc5oX4dY89Yo
 
 ###
-POST https://trello-clone-latest.onrender.com/users/reset-password-request
+POST https//localhost:5000/users/reset-password-request
 Content-Type: application/json
 
 {
@@ -78,7 +78,7 @@ Content-Type: application/json
 }
 
 ###
-POST https://trello-clone-latest.onrender.com/users/reset-password/65c1f90695d78bed4bbf1857/79a4a9e87c935cd1eb0609faaf21763997ebbb65e58fbf2582c281fb9c2f0454
+POST https://localhost:5000/users/reset-password/65c1f90695d78bed4bbf1857/79a4a9e87c935cd1eb0609faaf21763997ebbb65e58fbf2582c281fb9c2f0454
 Content-Type: application/json
 
 {

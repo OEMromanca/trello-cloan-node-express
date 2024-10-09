@@ -19,7 +19,7 @@ const userRouter = Router();
 
 userRouter.get('/', authenticateUser, authorizeUser(['admin']), getUsers);
 userRouter.delete('/delete-user/:id', deleteUser);
-userRouter.post('/assign-role', assignRoleToUser, authorizeUser(['admin']));
+userRouter.post('/assign-role', assignRoleToUser);
 userRouter.post('/register', registerUser);
 userRouter.post('/login', csrfMiddleware, loginUser);
 userRouter.post('/logout', authenticateUser, logoutUser);
