@@ -11,7 +11,7 @@ require('./db');
 dotenv.config();
 
 const app = express();
-const port = process.env.PORT || 5000;  
+const port = process.env.PORT || 5000; // Uisti sa, že používaš PORT z prostredia Renderu
 
 app.use(cors());
 app.use(cookieParser());
