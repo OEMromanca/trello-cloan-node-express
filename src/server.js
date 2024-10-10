@@ -21,13 +21,14 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
-app.use(csrfMiddleware())
+app.use(csrfMiddleware)
 
 
+app.use('/api', csrfRouter);
 app.use('/users', userRouter);
 app.use('/labels', labelRouter);
 app.use('/todos', todoRouter);
-app.use('/api', csrfRouter);
+
 
 app.listen(port, "0.0.0.0", () => {
   console.log(`Server is running at port ${port}`);
