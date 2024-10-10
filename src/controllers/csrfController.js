@@ -5,7 +5,6 @@ const getCsrfToken = (req, res) => {
     sameSite: 'strict',
     secure: process.env.NODE_ENV === 'production',
   });
-  res.locals.csrftoken = req.csrfToken();
 
 
   res.json({ csrfToken });
