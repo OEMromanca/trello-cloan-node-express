@@ -3,7 +3,7 @@ const getCsrfToken = (req, res) => {
 
   res.cookie('XSRF-TOKEN', csrfToken, {
     httpOnly: false,  
-    secure: true,  
+    secure: process.env.NODE_ENV === 'production',
     sameSite: 'None',  
     maxAge: 3600000 
   });
