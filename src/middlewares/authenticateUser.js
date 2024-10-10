@@ -20,6 +20,7 @@ const authenticateUser = async (req, res, next) => {
       "tokens.token": token,
     });
 
+    
     if (!user) {
       throw new Error("UnauthorizedUserDetected!");
     }
