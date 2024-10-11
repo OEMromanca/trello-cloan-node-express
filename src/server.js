@@ -30,6 +30,6 @@ app.use('/labels', labelRouter);
 app.use('/todos', todoRouter);
 
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port,  () => {
   console.log(`Server is running at port ${port}`);
 });

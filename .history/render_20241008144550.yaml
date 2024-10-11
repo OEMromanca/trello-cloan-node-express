@@ -1,8 +1,0 @@
-services:
-  - type: web
-    name: trello-clone
-    env: docker
-    docker:
-      image: docker.io/romanca/trello-clone:latest   
-    healthCheckPath: /
-    region: frankfurt

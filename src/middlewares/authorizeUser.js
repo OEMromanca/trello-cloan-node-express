@@ -10,8 +10,8 @@ const authorizeUser = (roles) => {
       res.status(403).send({ error: "User roles are missing" });
       return;
     }
-
-    if (!roles.includes(userRoles)) {
+    
+    if (!roles.some(role => userRoles.includes(role))) {
       res.status(403).send({ error: "You do not have permission" });
       return;
     }

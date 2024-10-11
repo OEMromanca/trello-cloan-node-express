@@ -7,29 +7,27 @@ dotenv.config();
 
 const authenticateUser = async (req, res, next) => {
   try {
-    const authorizationHeader = req.header("Authorization");
-    if (!authorizationHeader) {
-      throw new Error("Authorization header missing");
+    const token = req.cookies.accessToken;  
+    if (!token) {
+      throw new Error('No token provided');
     }
 
-    const token = authorizationHeader.replace("Bearer ", "");
     const decoded = jwt.verify(token, secretKey);
+    const user = await UserModel.findOne({ _id: decoded._id, 'tokens.token': token });
 
-    const user = await UserModel.findOne({
-      _id: decoded._id,
-      "tokens.token": token,
-    });
-
-    
     if (!user) {
-      throw new Error("UnauthorizedUserDetected!");
+      throw new Error('User not found');
     }
+
     req.user = user;
     req.token = token;
     next();
-  } catch (err) {
-    res.status(401).send({ error: "Please authenticate" });
+  } catch (error) {
+    res.status(401).send({ error: 'Please authenticate.' });
   }
 };
 
+
+
 module.exports = authenticateUser;
+ 

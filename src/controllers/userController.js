@@ -4,17 +4,15 @@ const UserModel = require('../models/UserModel');
 const { secretKey } = require('../config/config');
 const sendEmail = require('../utils/sendEmail');
 
+ 
+
 async function getUsers(_, res) {
   try {
     const users = await UserModel.find().populate('labels').populate('todos');
-
     res.json(users);
   } catch (error) {
     console.error(error);
-    const response = {
-      message: 'Error while fetching users.',
-    };
-    res.status(500).json(response);
+    res.status(500).json({ message: 'Error while fetching users.' });
   }
 }
 
@@ -28,9 +26,7 @@ async function deleteUser(req, res) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    res
-      .status(200)
-      .json({ message: `User '${user.email}' deleted successfully` });
+    res.status(200).json({ message: `User '${user.email}' deleted successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });
@@ -46,15 +42,8 @@ async function registerUser(req, res) {
       return res.status(400).json({ error: 'Email already exists' });
     }
 
-    const newUser = new UserModel({
-      firstName,
-      lastName,
-      email,
-      password,
-    });
-
+    const newUser = new UserModel({ firstName, lastName, email, password });
     await newUser.save();
-
     res.status(201).json({ user: newUser });
   } catch (error) {
     console.error(error);
@@ -64,25 +53,19 @@ async function registerUser(req, res) {
 
 async function loginUser(req, res) {
   try {
-    const user = await UserModel.findByCredentials(
-      req.body.email,
-      req.body.password
-    );
-
+    const user = await UserModel.findByCredentials(req.body.email, req.body.password);
     const accessToken = await user.generateAuthToken();
     const refreshToken = await user.generateRefreshToken();
 
-    
     res.cookie('accessToken', accessToken, {
-      httpOnly: true,  
-      secure: true,  
+      httpOnly: true,
+      secure: process.env.NODE_ENV === 'production',  
       maxAge: 60 * 60 * 1000,  
     });
 
-  
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: true,
+      secure: process.env.NODE_ENV === 'production',  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
     });
 
@@ -94,27 +77,19 @@ async function loginUser(req, res) {
 
 async function logoutUser(req, res) {
   try {
-    console.log('> Logout attempt');
-
     const authorizationHeader = req.header('Authorization');
     if (!authorizationHeader) {
       throw new Error('Authorization header missing');
     }
 
     const token = authorizationHeader.replace('Bearer ', '');
-
     const decoded = jwt.verify(token, secretKey);
 
-    const user = await UserModel.findOne({
-      _id: decoded._id,
-      'tokens.token': token,
-    });
+    const user = await UserModel.findOne({ _id: decoded._id, 'tokens.token': token });
 
     if (!user) {
       throw new Error('UnauthorizedUserDetected!');
     }
-
-    console.log('User found:', user);
 
     req.user = user;
     req.token = token;
@@ -130,7 +105,7 @@ async function logoutUser(req, res) {
 }
 
 async function userProfile(req, res) {
-  console.log('>myProfile');
+
   try {
     const user = await UserModel.findOne({
       _id: req.user._id,
@@ -138,12 +113,14 @@ async function userProfile(req, res) {
     });
 
     if (!user) {
-      return res.status(404).send();
+      console.log('User not found:', req.user._id);
+      return res.status(404).send({ error: 'User not found' });
     }
 
     res.status(200).send(user);
-    console.log(user);
+    console.log('User profile data:', user);
   } catch (error) {
+    console.error('Error fetching user profile:', error);
     res.status(400).send(error);
   }
 }
@@ -151,13 +128,11 @@ async function userProfile(req, res) {
 async function requestPasswordReset(req, res) {
   try {
     const { email } = req.body;
-
     const user = await UserModel.findOne({ email });
-    if (!user)
-      return res.status(400).send("User with given email doesn't exist");
+
+    if (!user) return res.status(400).send("User with given email doesn't exist");
 
     const token = crypto.randomBytes(32).toString('hex');
-    //fake link will be updated /// TODO
     const link = `https://en.wikipedia.org/wiki/Opal/${user._id}/${token}`;
 
     user.resetPasswordToken = token;
@@ -166,11 +141,10 @@ async function requestPasswordReset(req, res) {
 
     await user.save();
     await sendEmail(user.email, 'Password reset', link);
-
     res.send('Password reset link sent to your email account');
   } catch (error) {
-    res.send('An error occurred');
     console.log(error);
+    res.send('An error occurred');
   }
 }
 
@@ -180,7 +154,6 @@ async function resetPassword(req, res) {
     const { password } = req.body;
 
     const user = await UserModel.findById(userId);
-
     if (!user) return res.status(400).send('Invalid link or expired (user)');
 
     if (user.resetPasswordToken !== token)
@@ -189,18 +162,15 @@ async function resetPassword(req, res) {
     if (Date.now() > user.resetPasswordExpires)
       return res.status(400).send('Invalid link or expired (time)');
 
-    if (user) {
-      user.password = password;
-      delete user.resetPasswordToken;
-      user.resetPasswordExpires = null;
-    }
+    user.password = password;
+    delete user.resetPasswordToken;
+    user.resetPasswordExpires = null;
 
     await user.save();
-
     res.send('Password reset successfully.');
   } catch (error) {
-    res.send('An error occurred');
     console.log(error);
+    res.send('An error occurred');
   }
 }
 
@@ -209,7 +179,6 @@ async function assignRoleToUser(req, res) {
 
   try {
     const user = await UserModel.findById(userId);
-
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -219,9 +188,7 @@ async function assignRoleToUser(req, res) {
     }
 
     user.roles = role;
-
     await user.save();
-
     res.status(200).json({ message: `Role '${role}' assigned to user` });
   } catch (error) {
     console.error(error);
@@ -235,7 +202,6 @@ async function editUser(req, res) {
 
   try {
     const user = await UserModel.findById(userId);
-
     if (!user) {
       return res.status(404).json({ error: 'User not found' });
     }
@@ -245,10 +211,7 @@ async function editUser(req, res) {
     user.email = email || user.email;
 
     await user.save();
-
-    res
-      .status(200)
-      .json({ message: `User '${user.email}' updated successfully` });
+    res.status(200).json({ message: `User '${user.email}' updated successfully` });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: 'Internal Server Error' });

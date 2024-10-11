@@ -4,24 +4,25 @@ GET http://localhost:5000/api/csrf-token
 
 ####
 GET http://localhost:5000/users
-
 Content-Type: application/json
-Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3Mjg1MDUyMzgsImV4cCI6MTcyODUwNjEzOH0.P9ZGwtMlqMudd5W5p_kPy0HY-37RTgSGWFkw3I_b_Ms
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3Mjg2NDQzMjYsImV4cCI6MTcyODY0NTIyNn0.voHkPptUewWr1n43-QBPnMg4XnSdmX-mQwl-8x2pd94
 
 
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: S70lCEEW-SBXXiiWYRitQ5eW693JVOfX4mG4
+X-CSRF-Token: U9S5Bw1f-84vWYP1HMwE03ZH_ctS0A36sGiA
 
 {
   "email": "r.jamrisko@gmail.com",
   "password": "123456"
 }
 
+###
+GET http://localhost:5000/users/profile
+Content-Type: application/json
+credentials: 'include'
 
-
-# http://localhost:5000/users
 ###
 
 GET https://trello-clone-latest.onrender.com/api/csrf-token
