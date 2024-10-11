@@ -31,13 +31,13 @@ GET https://trello-clone-latest.onrender.com/api/csrf-token
 GET https://trello-clone-latest.onrender.com/users
 
 Content-Type: application/json
-Authorization: Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3Mjg1NTIyNDcsImV4cCI6MTcyODU1MzE0N30.MjjVizpyM6BOY1pvip2sv6nLitqqWTdIeCn0oTh6ZQY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3Mjg2NTgxMjUsImV4cCI6MTcyODY1OTAyNX0.mbu0yrgsW3zD8btlzg_UIgfol9wb3FskLWRRI6-VDMk
 
 
 ###
 POST https://trello-clone-latest.onrender.com/users/login
 Content-Type: application/json
-X-CSRF-Token: 8zZtabbs-baNNGkhyZqMJerDEFik7bE7X-YE
+X-CSRF-Token: U7XykEU6-OIWgxD6MXn33DH6L0xbKVWTccn4
 
 
 {
