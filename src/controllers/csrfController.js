@@ -1,5 +1,5 @@
 const getCsrfToken = (req, res) => {
-  const csrfToken = req.csrfToken();
+  const csrfToken = req.locals.csrfToken();
 
   res.cookie('XSRF-TOKEN', csrfToken, {
     httpOnly: false, 
