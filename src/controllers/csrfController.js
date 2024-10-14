@@ -2,7 +2,7 @@ const getCsrfToken = (req, res) => {
   const csrfToken = req.csrfToken();
 
   res.cookie('XSRF-TOKEN', csrfToken, {
-    httpOnly: true, 
+    httpOnly: false, 
     sameSite: 'None', 
     secure:true,
   });
