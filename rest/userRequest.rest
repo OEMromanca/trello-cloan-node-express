@@ -11,7 +11,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: U9S5Bw1f-84vWYP1HMwE03ZH_ctS0A36sGiA
+credentials: 'include'
 
 {
   "email": "r.jamrisko@gmail.com",
@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST https://trello-clone-latest.onrender.com/users/login
 Content-Type: application/json
-credentials: 'include'
+X-CSRF-Token: vyKWzQUb-8DUAwXUhktCeTuJs8h4pxaJjKN0
 
 
 {

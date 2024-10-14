@@ -1,5 +1,5 @@
-const getCsrfToken = (req, res) => {
-  const csrfToken = req.csrfToken();
+const getCsrfToken = async(req, res) => {
+  const csrfToken = await req.csrfToken();
 
   res.cookie('XSRF-TOKEN', csrfToken, {
     httpOnly: true, 
