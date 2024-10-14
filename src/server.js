@@ -17,8 +17,11 @@ const port = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'https://trello-clone-0ln5.onrender.com'  
+    'https://trello-clone-0ln5.onrender.com',
+
   ],  
+  allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
+
   credentials: true,  
 }));
 app.use(cookieParser());
