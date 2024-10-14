@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST https://trello-clone-latest.onrender.com/users/login
 Content-Type: application/json
-X-CSRF-Token: vyKWzQUb-8DUAwXUhktCeTuJs8h4pxaJjKN0
+X-CSRF-Token: 74okgqK2-wHAZNHsNqQVoAvq4Jz_qXCidrkc
 
 
 {
