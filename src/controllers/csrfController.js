@@ -9,8 +9,7 @@ const getCsrfToken = (req, res) => {
     secure: true,
   });
 
-  res.json({ CSRFToken: csrfToken });
- 
+  res.json({  csrfToken }); 
 };
 
 module.exports = { getCsrfToken };
