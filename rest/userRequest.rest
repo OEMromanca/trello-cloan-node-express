@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST https://trello-clone-0ln5.onrender.com/users/login
 Content-Type: application/json
-X-CSRF-Token: Pbs9GjdJ-8R1T0PVwmuuhvNDDq5WKY32Khsg
+X-CSRF-Token: DBKCVgwj-grVhhn2Tn0n1I0_bhDR1j6uyMv8
 
 {
   "email": "r.jamrisko@gmail.com",
