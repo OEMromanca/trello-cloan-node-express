@@ -3,13 +3,14 @@ const getCsrfToken = (req, res) => {
 
   console.log("token");
 
-  res.cookie('XSRF-TOKEN', csrfToken, {
+  res.cookie('X-CSRF-Token', csrfToken, {
     httpOnly: false,
     sameSite: 'None', 
     secure: true,
   });
 
-  res.json({  csrfToken }); 
+  res.json({ CSRFToken: csrfToken });
+ 
 };
 
 module.exports = { getCsrfToken };
