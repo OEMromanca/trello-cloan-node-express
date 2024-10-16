@@ -1,4 +1,4 @@
-const getCsrfToken = (req, res) => {
+const getCsrfToken = (req, res, next) => {
   const csrfToken = req.csrfToken();
 
   console.log("token")
@@ -8,7 +8,7 @@ const getCsrfToken = (req, res) => {
     sameSite: 'None', 
     secure:true,
   });
-  res.json({ csrfToken });
+  next();
 };
 
 
