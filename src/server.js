@@ -17,7 +17,7 @@ const port = process.env.PORT || 5000;
 app.use(cors({
   origin: [
     'http://localhost:5173', 
-    'https://trello-clone-0ln5.onrender.com',
+    'https://trello-clone-node-express-4.onrender.com',
     'https://trello-clone-react.onrender.com'
   ],  
   allowedHeaders: ['Content-Type', 'X-CSRF-Token'],
