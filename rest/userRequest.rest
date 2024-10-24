@@ -1,5 +1,16 @@
 // USERS ENPOINTS requires AUTH
 
+POST http://localhost:5000/users/register
+Content-Type: application/json
+
+{
+  "firstName":"Romankos",
+  "lastName": "Jamris",
+  "email": "rjamrisko@gmail.com",
+  "password": "123456"
+}
+
+####
 GET http://localhost:5000/api/csrf-token
 
 ####
@@ -11,10 +22,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: BUiZDVbP-lCZ9U6lWzoJNQGx-BgtFhrztFnU
+X-CSRF-Token: AzkBZOFZ-ezGurrdoJ0S4EK4vX5DCuDWpGYs
 
 {
-  "email": "r.jamrisko@gmail.com",
+  "email": "rjamrisko@gmail.com",
   "password": "123456"
 }
 
@@ -25,7 +36,7 @@ credentials: 'include'
 
 ###
 
-GET https://trello-clone-0ln5.onrender.com/api/csrf-token
+GET https://trello-clone-node-express-3.onrender.com/api/csrf-token
 
 ####
 GET https://trello-clone-latest.onrender.com/users
@@ -40,7 +51,7 @@ Content-Type: application/json
 X-CSRF-Token: DBKCVgwj-grVhhn2Tn0n1I0_bhDR1j6uyMv8
 
 {
-  "email": "r.jamrisko@gmail.com",
+  "email": "rjamrisko@gmail.com",
   "password": "123456"
 }
 
