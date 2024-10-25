@@ -26,6 +26,7 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: . 
+          file: Dockerfile.dev    
           push: true
           tags: romanca/trello-clone-backend:dev
 
@@ -33,9 +34,9 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           context: . 
+          file: Dockerfile.prod    
           push: true
-          tags: romanca/trello-clone-backend:prod
-          file: Dockerfile.prod   
+          tags: romanca/trello-clone-backend:prod   
 
       - name: Notify on success
         run: echo "Docker images for both Development and Production have been built and pushed successfully!"
