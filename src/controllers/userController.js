@@ -56,17 +56,19 @@ async function loginUser(req, res) {
     const user = await UserModel.findByCredentials(req.body.email, req.body.password);
     const accessToken = await user.generateAuthToken();
     const refreshToken = await user.generateRefreshToken();
+    const isProduction = process.env.NODE_ENV === 'production';
+
 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
-      secure: true,  
+      secure:isProduction,  
       maxAge: 60 * 60 * 1000,  
       sameSite:"None"
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: true,  
+      secure: isProduction,  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
       sameSite: 'None', 
 

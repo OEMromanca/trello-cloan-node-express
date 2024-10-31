@@ -22,7 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: iOfE7hlz-KaPCZZqwPT1uj3RgzFBifl06DYs
+X-CSRF-Token: bv5tZNEk-8edphPOP2YUdmFOPjFmawPYJm-E
 
 {
   "email": "rjamrisko@gmail.com",
