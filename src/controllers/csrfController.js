@@ -4,9 +4,10 @@ const getCsrfToken = (req, res) => {
   console.log("token");
 
   res.cookie('X-CSRF-Token', csrfToken, {
-    httpOnly: false,
-    sameSite: 'None', 
-    secure: true,
+    httpOnly: true,
+    secure: false,
+    sameSite:'Lax',
+    maxAge: 60 * 60 * 1000,  
   });
 
   res.json({  csrfToken }); 
