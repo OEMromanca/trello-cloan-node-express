@@ -63,13 +63,15 @@ async function loginUser(req, res) {
       secure:false,  
       maxAge: 60 * 60 * 1000,  
       sameSite:'Lax',
+      domain: 'localhost'
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
       secure: false,  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
-      sameSite: 'Lax', 
+      sameSite: 'Lax',
+      domain: 'localhost' 
 
     });
 
