@@ -60,14 +60,14 @@ async function loginUser(req, res) {
 
     res.cookie('accessToken', accessToken, {
       httpOnly: true,
-      secure:true,  
+      secure:false,  
       maxAge: 60 * 60 * 1000,  
       sameSite:'Lax',
     });
 
     res.cookie('refreshToken', refreshToken, {
       httpOnly: true,
-      secure: true,  
+      secure: false,  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
       sameSite: 'Lax', 
 
