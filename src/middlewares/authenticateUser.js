@@ -16,16 +16,20 @@ const authenticateUser = async (req, res, next) => {
     const user = await UserModel.findOne({ _id: decoded._id, 'tokens.token': token });
 
     if (!user) {
-      throw new Error('User not found');
+      res.clearCookie('accessToken');
+      return res.status(401).send({ error: 'Please authenticate.' });
     }
 
     req.user = user;
     req.token = token;
     next();
   } catch (error) {
+    // Zrušte cookie pri chybe
+    res.clearCookie('accessToken');
     res.status(401).send({ error: 'Please authenticate.' });
   }
 };
+
 
 
 
