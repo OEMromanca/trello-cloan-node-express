@@ -24,7 +24,6 @@ const authenticateUser = async (req, res, next) => {
     req.token = token;
     next();
   } catch (error) {
-    // Zrušte cookie pri chybe
     res.clearCookie('accessToken');
     res.status(401).send({ error: 'Please authenticate.' });
   }
