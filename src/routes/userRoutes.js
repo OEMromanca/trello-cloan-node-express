@@ -27,7 +27,7 @@ userRouter.get(
   '/profile',
   authenticateUser,
   authorizeUser(['admin', 'user']),
-  userProfile
+  userProfile,csrfMiddleware
 );
 userRouter.post('/reset-password-request', requestPasswordReset);
 userRouter.post('/reset-password/:userId/:token', resetPassword);
