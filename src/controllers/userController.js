@@ -4,7 +4,26 @@ const UserModel = require('../models/UserModel');
 const { secretKey } = require('../config/config');
 const sendEmail = require('../utils/sendEmail');
 
- 
+async function authUser(req, res) {
+  try {
+    const token = req.cookies.accessToken;
+    if (!token) {
+      return res.status(200).json({ isAuthenticated: false });
+    }
+
+    const decoded = jwt.verify(token, secretKey);
+    const user = await UserModel.findOne({ _id: decoded._id, "tokens.token": token });
+
+    if (!user) {
+      return res.status(200).json({ isAuthenticated: false });
+    }
+
+    res.status(200).json({ isAuthenticated: true, user });
+  } catch (error) {
+    console.error("Authentication error:", error);
+    res.status(200).json({ isAuthenticated: false });
+  }
+}
 
 async function getUsers(_, res) {
   try {
@@ -223,6 +242,7 @@ async function editUser(req, res) {
 }
 
 module.exports = {
+  authUser,
   getUsers,
   registerUser,
   loginUser,

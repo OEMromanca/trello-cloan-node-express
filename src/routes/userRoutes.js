@@ -10,6 +10,7 @@ const {
   assignRoleToUser,
   deleteUser,
   editUser,
+  authUser,
 } = require('../controllers/userController');
 const authenticateUser = require('../middlewares/authenticateUser');
 const authorizeUser = require('../middlewares/authorizeUser');
@@ -37,5 +38,7 @@ userRouter.put(
   authorizeUser(['admin']),
   editUser
 );
+userRouter.get('/auth-user', authenticateUser, authUser);
+
 
 module.exports = { userRouter };
