@@ -6,7 +6,7 @@ Content-Type: application/json
 {
   "firstName":"Romankos",
   "lastName": "Jamris",
-  "email": "rjamrisko@gmail.com",
+  "email": "rjam@gmail.com",
   "password": "123456"
 }
 
@@ -22,7 +22,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: bv5tZNEk-8edphPOP2YUdmFOPjFmawPYJm-E
+X-CSRF-Token: miKNpjpb-WbLoVs2Hy47UVOyuER-plsvGwzQ  
 
 {
   "email": "rjamrisko@gmail.com",

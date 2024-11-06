@@ -78,14 +78,12 @@ async function loginUser(req, res) {
 
 
     res.cookie('accessToken', accessToken, {
-      httpOnly: true,
       secure:false,  
       maxAge: 60 * 1000,
       sameSite:'Lax',
     });
 
     res.cookie('refreshToken', refreshToken, {
-      httpOnly: true,
       secure: false,  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
       sameSite: 'Lax',
@@ -206,7 +204,7 @@ async function assignRoleToUser(req, res) {
       return res.status(404).json({ error: 'User not found' });
     }
 
-    if (user.roles && user.roles.includes(role)) {
+    if (user.roles ?? user.roles.includes(role)) {
       return res.status(400).json({ error: 'User already has this role' });
     }
 
