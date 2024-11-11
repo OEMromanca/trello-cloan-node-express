@@ -1,4 +1,4 @@
-const { Router } = require('express');
+const { Router } = require("express");
 const {
   getUsers,
   loginUser,
@@ -10,35 +10,32 @@ const {
   assignRoleToUser,
   deleteUser,
   editUser,
-  authUser,
-} = require('../controllers/userController');
-const authenticateUser = require('../middlewares/authenticateUser');
-const authorizeUser = require('../middlewares/authorizeUser');
-const csrfMiddleware = require('../middlewares/csrfMiddleware');
+} = require("../controllers/userController");
+const authenticateUser = require("../middlewares/authenticateUser");
+const authorizeUser = require("../middlewares/authorizeUser");
+const csrfMiddleware = require("../middlewares/csrfMiddleware");
 
 const userRouter = Router();
 
-userRouter.get('/', authenticateUser, authorizeUser(['admin']), getUsers);
-userRouter.delete('/delete-user/:id', deleteUser, authenticateUser);
-userRouter.post('/assign-role', assignRoleToUser, authorizeUser(['admin']), csrfMiddleware );
-userRouter.post('/register', registerUser);
-userRouter.post('/login', csrfMiddleware, loginUser);
-userRouter.post('/logout', authenticateUser, logoutUser);
+userRouter.get("/", authenticateUser, authorizeUser(["admin"]), getUsers);
+userRouter.delete("/delete-user/:id", deleteUser, authenticateUser);
+userRouter.post("/assign-role", assignRoleToUser, authorizeUser(["admin"]));
+userRouter.post("/register", registerUser);
+userRouter.post("/login", csrfMiddleware, loginUser);
+userRouter.post("/logout", authenticateUser, logoutUser);
 userRouter.get(
-  '/profile',
+  "/profile",
   authenticateUser,
-  authorizeUser(['admin', 'user']),
-  userProfile,csrfMiddleware
+  authorizeUser(["admin", "user"]),
+  userProfile
 );
-userRouter.post('/reset-password-request', requestPasswordReset);
-userRouter.post('/reset-password/:userId/:token', resetPassword);
+userRouter.post("/reset-password-request", requestPasswordReset);
+userRouter.post("/reset-password/:userId/:token", resetPassword);
 userRouter.put(
-  '/edit-user/:id',
+  "/edit-user/:id",
   authenticateUser,
-  authorizeUser(['admin']),
+  authorizeUser(["admin"]),
   editUser
 );
-userRouter.get('/auth-user', authenticateUser, authUser);
-
 
 module.exports = { userRouter };
