@@ -4,27 +4,6 @@ const UserModel = require('../models/UserModel');
 const { secretKey } = require('../config/config');
 const sendEmail = require('../utils/sendEmail');
 
-async function authUser(req, res) {
-  try {
-    const token = req.cookies.accessToken;
-    if (!token) {
-      return res.status(200).json({ isAuthenticated: false });
-    }
-
-    const decoded = jwt.verify(token, secretKey);
-    const user = await UserModel.findOne({ _id: decoded._id, "tokens.token": token });
-
-    if (!user) {
-      return res.status(200).json({ isAuthenticated: false });
-    }
-
-    res.status(200).json({ isAuthenticated: true, user });
-  } catch (error) {
-    console.error("Authentication error:", error);
-    res.status(200).json({ isAuthenticated: false });
-  }
-}
-
 async function getUsers(_, res) {
   try {
     const users = await UserModel.find().populate('labels').populate('todos');
@@ -78,13 +57,15 @@ async function loginUser(req, res) {
 
 
     res.cookie('accessToken', accessToken, {
-      secure:false,  
+      httpOnly: true,
+      secure:true,  
       maxAge: 60 * 1000,
       sameSite:'Lax',
     });
 
     res.cookie('refreshToken', refreshToken, {
-      secure: false,  
+      httpOnly: true,
+      secure: true,  
       maxAge: 30 * 24 * 60 * 60 * 1000,  
       sameSite: 'Lax',
 
@@ -238,6 +219,28 @@ async function editUser(req, res) {
     res.status(500).json({ error: 'Internal Server Error' });
   }
 }
+
+async function authUser(req, res) {
+  try {
+    const token = req.cookies.accessToken;
+    if (!token) {
+      return res.status(200).json({ isAuthenticated: false });
+    }
+
+    const decoded = jwt.verify(token, secretKey);
+    const user = await UserModel.findOne({ _id: decoded._id, "tokens.token": token });
+
+    if (!user) {
+      return res.status(200).json({ isAuthenticated: false });
+    }
+
+    res.status(200).json({ isAuthenticated: true, user });
+  } catch (error) {
+    console.error("Authentication error:", error);
+    res.status(200).json({ isAuthenticated: false });
+  }
+}
+
 
 module.exports = {
   authUser,

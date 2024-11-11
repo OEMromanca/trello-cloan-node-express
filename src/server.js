@@ -6,6 +6,7 @@ const { labelRouter } = require('./routes/labelRouters');
 const { todoRouter } = require('./routes/todoRoutes');
 const { csrfRouter } = require('./routes/csrfRoutes');
 const cookieParser = require('cookie-parser');
+const csrfMiddleware = require('./middlewares/csrfMiddleware');
 require('./db');
 
 dotenv.config();
@@ -26,6 +27,8 @@ app.use(cors({
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(csrfMiddleware);
+
 
 
 app.use('/api', csrfRouter);

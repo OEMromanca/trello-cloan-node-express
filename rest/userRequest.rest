@@ -16,13 +16,13 @@ GET http://localhost:5000/api/csrf-token
 ####
 GET http://localhost:5000/users
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzAzYWQ4Y2MxZDZlMzFmYmRmNDcxZWIiLCJpYXQiOjE3Mjg2NDQzMjYsImV4cCI6MTcyODY0NTIyNn0.voHkPptUewWr1n43-QBPnMg4XnSdmX-mQwl-8x2pd94
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFhM2FkMjI0MzQzYzM0Y2U5ZDQyNDMiLCJpYXQiOjE3MzA5NzA2MjYsImV4cCI6MTczMDk3MTUyNn0.RsRLTNtnoPuwBHEvPiN1gnzD_SsDJa1IJer4lYT4A6E
 
 
 ###
 POST http://localhost:5000/users/login
 Content-Type: application/json
-X-CSRF-Token: miKNpjpb-WbLoVs2Hy47UVOyuER-plsvGwzQ  
+X-CSRF-Token: fWicVYhl-aBP_1xRzI0li_c14lkyEscH-OZw  
 
 {
   "email": "rjamrisko@gmail.com",
@@ -32,7 +32,7 @@ X-CSRF-Token: miKNpjpb-WbLoVs2Hy47UVOyuER-plsvGwzQ
 ###
 GET http://localhost:5000/users/profile
 Content-Type: application/json
-credentials: 'include'
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NzFhM2FkMjI0MzQzYzM0Y2U5ZDQyNDMiLCJpYXQiOjE3MzA5NzA5ODcsImV4cCI6MTczMDk3MTg4N30.v013QcQClFCADHxzTytdVI4dPTBDuJ4Ub1nC3Xn9d5k
 
 ###
 
