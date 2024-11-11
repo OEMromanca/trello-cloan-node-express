@@ -17,17 +17,34 @@ const csrfMiddleware = require("../middlewares/csrfMiddleware");
 
 const userRouter = Router();
 
-userRouter.get("/", authenticateUser, authorizeUser(["admin"]), getUsers);
-userRouter.delete("/delete-user/:id", deleteUser, authenticateUser);
-userRouter.post("/assign-role", assignRoleToUser, authorizeUser(["admin"]));
+userRouter.get(
+  "/",
+  authenticateUser,
+  authorizeUser(["admin"]),
+  getUsers,
+  csrfMiddleware
+);
+userRouter.delete(
+  "/delete-user/:id",
+  deleteUser,
+  authenticateUser,
+  csrfMiddleware
+);
+userRouter.post(
+  "/assign-role",
+  assignRoleToUser,
+  authorizeUser(["admin"]),
+  csrfMiddleware
+);
 userRouter.post("/register", registerUser);
 userRouter.post("/login", csrfMiddleware, loginUser);
-userRouter.post("/logout", authenticateUser, logoutUser);
+userRouter.post("/logout", authenticateUser, logoutUser, csrfMiddleware);
 userRouter.get(
   "/profile",
   authenticateUser,
   authorizeUser(["admin", "user"]),
-  userProfile
+  userProfile,
+  csrfMiddleware
 );
 userRouter.post("/reset-password-request", requestPasswordReset);
 userRouter.post("/reset-password/:userId/:token", resetPassword);
